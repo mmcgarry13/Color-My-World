@@ -94,3 +94,9 @@ function rgbToHSL(rgbObj){
 //  calls the function, assigns HSL object to hsl,  changes the body background color to the primary css variable. 
 let hsl = rgbToHSL(hexToRGB(primary));
 body.style.setProperty('background-color', `hsl(${hsl.hue}, ${hsl.saturation}%, ${hsl.lightness}%)`);
+
+// *********************TODOS***************************** //
+
+// create function that changes primary variable
+
+// create function that takes primary hsl and updates all other css variables. 
