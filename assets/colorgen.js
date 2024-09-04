@@ -32,7 +32,7 @@ function hexToRGB(hex){
    return {
     r: parseInt(r, 16), 
     g: parseInt(g, 16), 
-    b: parseInt(b, 16)}
+    b: parseInt(b, 16)
     };
 
 function rgbToHSL(rgbObj){
