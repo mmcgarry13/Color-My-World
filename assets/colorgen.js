@@ -34,6 +34,7 @@ function hexToRGB(hex){
     g: parseInt(g, 16), 
     b: parseInt(b, 16)
     };
+}
 
 function rgbToHSL(rgbObj){
     // assigns r,g,b from object, then converts it to a number between 0-1
