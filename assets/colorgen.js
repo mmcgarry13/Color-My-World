@@ -1,4 +1,4 @@
-//  
+//  create variables for the css root selector and body element, reference to primary css variable
 const root = document.querySelector(':root');
 const primary = getComputedStyle(root).getPropertyValue('--primary');
 const body = document.querySelector('body');
