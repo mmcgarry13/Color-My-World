@@ -15,6 +15,11 @@ div {
     height: 300px;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+}
+
 .primary {
     background-color: var(--primary);
 }
