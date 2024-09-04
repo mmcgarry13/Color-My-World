@@ -1,12 +1,52 @@
 :root {
-    --primary: #F00;
-    --adjacent1: #F50;
-    --adjacent2: #F05;
-    
+    --primary: #800;
+    --adjacent1: #820;
+    --adjacent2: #802;
+    --complimentary: #088;
+    --triad1: #080;
+    --triad2: #008;
+    --light: #F00;
+    --dark: #600;
+
 }
 
 div {
     width: 300px;
     height: 300px;
+}
+
+.primary {
+    background-color: var(--primary);
+}
+
+.adjacent-1 {
     background-color: var(--adjacent1);
 }
+
+.adjacent-2 {
+    background-color: var(--adjacent2);
+}
+
+.complimentary {
+    background-color: var(--complimentary);
+}
+
+.triad-1 {
+    background-color: var(--triad1);
+}
+
+.triad-2 {
+    background-color: var(--triad2);
+}
+
+.light {
+    background-color: var(--light);
+}
+
+.dark {
+    background-color: var(--dark);
+}
+
+
+
+
