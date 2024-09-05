@@ -1,7 +1,16 @@
 //  create variables for the css root selector and body element, reference to primary css variable
 const root = document.querySelector(':root');
-let primary = getComputedStyle(root).getPropertyValue('--primary');
 const body = document.querySelector('body');
+let primary = getComputedStyle(root).getPropertyValue('--primary');
+let adjacent1 = getComputedStyle(root).getPropertyValue('--adjacent1');
+let adjacent2 = getComputedStyle(root).getPropertyValue('--adjecent2');
+let complimentary = getComputedStyle(root).getPropertyValue('--complimentary');
+let triad1 = getComputedStyle(root).getPropertyValue('--triad1');
+let triad2 = getComputedStyle(root).getPropertyValue('--triad2');
+let light = getComputedStyle(root).getPropertyValue('--light');
+let dark = getComputedStyle(root).getPropertyValue('--dark');
+
+
 
 // converts hex color values 00-FF into r, g, b values 0-255. 
 function hexToRGB(hex){
@@ -53,7 +62,8 @@ function RGBToHSL(rgbObj){
     let s = 0;
     let l = 0;
     
-    // finds quadrant of color circle to start from and calculates hue using trig provided by css-tricks.com
+    // finds quadrant of color circle to start from and calculates hue using math provided by css-tricks.com
+    // ****TODO: Turn this into a switch statement**** //
     if (delta == 0){
         h = 0;
     }
@@ -100,53 +110,63 @@ function setPrimary(hexColor){
 
 // takes the hslObject from rgbToHSL and returns a color palette object
 function generateColorPalette(hslObject){
-    const { h,s,l } = hslObject;
+    const h = hslObject.hue;
+    const s = hslObject.saturation;
+    const l = hslObject.lightness
     const phi = 30; //degrees
-    const colorPalette = {
-        primary: {
+    const colorPalette = [
+        {
+            name: 'primary',
             hue: h,
             saturation: s,
-            lightness: l
+            lightness: l,
         },
-        adjacent1: {
+        {
             // if h + phi is less than or equal to 360, hue equals h + phi, 
             // else subtract 360 to get the correct angle
+            name: 'adjacent1',
             hue: (h + phi) <= 360 ? h + phi : h + phi - 360,
             saturation: s,
             lightness: l
         },
-        adjacent2: {
+        {
             // same deal but other direction
+            name: 'adjacent2',
             hue: (h - phi) >= 0 ? h - phi : h - phi + 360,
             saturation: s,
             lightness: l
         },
-        complimentary: {
+        {
+            name: 'complimentary',
             hue: (h + 180) <= 360 ? h + 180 : h + 180 - 360,
             saturation: s,
             lightness: l
         },
-        triad1: {
+        {
+            name: 'triad1',
             hue: (h + 180 + phi) <= 360 ? h + 180 + phi : h + 180 + phi - 360,
             saturation: s,
             lightness: l
         },
-        triad2: {
-            hue: (h + 180 - phi) >= 0 ? h + 180 - phi : h + 180 -phi + 360,
+        {
+            name: 'triad2',
+            hue: (h + 180 - phi) <= 360 ? h + 180 - phi : h + 180 - phi - 360,
             saturation: s,
             lightness: l
         },
-        light: {
+        {
+            name: 'light',
             hue: h,
-            saturation: (s - 20) <= 100 ? s - 20 : 100,
+            saturation: (s - 20) <= 100 ? (s - 20).toFixed(1) : 100,
             lightness: l 
         },
-        dark: {
+        {
+            name: 'dark',
             hue: h,
             saturation: s,
-            lightness: (l - 20) <= 100 ? l - 20 : 0
+            lightness: (l - 20) <= 100 ? (l - 20).toFixed(1) : 0
         }
-    }
+    ]
     return colorPalette;
 }
 
@@ -155,7 +175,7 @@ function HSLToHex(hslObject){
     let s = hslObject.saturation;
     let l = hslObject.lightness;
 
-    //  This next bit of code is some magic trig from css-tricks.com
+    //  This next bit of code is some magic math from css-tricks.com
 
     // s and l need to be between 0 and 1
     s /= 100;
@@ -171,6 +191,7 @@ function HSLToHex(hslObject){
     let b = 0;
 
     // ********TODO: Turn this into a switch statement******** // 
+    //  basically find the 60 degree section of the color wheel hue is pointing to, then assign r,g,b accordingly
     if (h >= 0 && h < 60) {
         r = c; g = x; b = 0;  
       } 
@@ -189,27 +210,58 @@ function HSLToHex(hslObject){
       else if (h >= 300 && h < 360) {
         r = c; g = 0; b = x;
       }
-      r = Math.round((r + m) * 255);
-      g = Math.round((g + m) * 255);
-      b = Math.round((b + m) * 255);
+      r = (Math.round((r + m) * 255)).toString(16);
+      g = (Math.round((g + m) * 255)).toString(16);
+      b = (Math.round((b + m) * 255)).toString(16);
 
-      return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+      if (r.length == 1){
+        r += r;
+      }
+      if (g.length == 1){
+        g += g;
+      }
+      if (b.length == 1){
+        b += b;
+      }
 
+      return `#${r}${g}${b}`;
 }
 
+// takes an array of hsl color objects and changes the css variables accordingly, resets the global reference variables
+function setCSSVariables(colorPalette){
+    colorPalette.forEach(color => {
+        root.style.setProperty(`--${color.name}`, `${HSLToHex(color)}`);
+    });
+    primary = getComputedStyle(root).getPropertyValue('--primary');
+    adjacent1 = getComputedStyle(root).getPropertyValue('--adjacent1');
+    adjacent2 = getComputedStyle(root).getPropertyValue('--adjacent2');
+    complimentary = getComputedStyle(root).getPropertyValue('--complimentary');
+    triad1 = getComputedStyle(root).getPropertyValue('--triad1');
+    triad2 = getComputedStyle(root).getPropertyValue('--triad2');
+    light = getComputedStyle(root).getPropertyValue('--light');
+    dark = getComputedStyle(root).getPropertyValue('--dark');
 
+    console.log(`
+        primary: ${primary}
+        adjacent1: ${adjacent1}
+        adjacent2: ${adjacent2}
+        complimentary: ${complimentary}
+        triad1: ${triad1}
+        triad2: ${triad2}
+        light: ${light}
+        dark: ${dark}
+        `)
+}
 // **********************TESTING************************** //
 
 //  sets primary color
-setPrimary('#5656FF');
+setPrimary('#5950FF');
 
 //  calls the function, assigns HSL object to hsl,  changes the body background color to the primary css variable. 
 let hsl = RGBToHSL(hexToRGB(primary));
-body.style.setProperty('background-color', `hsl(${hsl.hue}, ${hsl.saturation}%, ${hsl.lightness}%)`);
-console.log(HSLToHex(hsl));
 
+// 
+setCSSVariables(generateColorPalette(hsl));
 // ***********************TODOS*************************** //
-
-// create function that converts hsl to hex code string
 
 // create function that sets all css variables to new hexcodes
