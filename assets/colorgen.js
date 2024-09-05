@@ -38,7 +38,7 @@ function hexToRGB(hex){
     };
 }
 
-function rgbToHSL(rgbObj){
+function RGBToHSL(rgbObj){
     // assigns r,g,b from object, then converts it to a number between 0-1
     let { r,g,b } = rgbObj;
     r /= 255;
@@ -53,7 +53,7 @@ function rgbToHSL(rgbObj){
     let s = 0;
     let l = 0;
     
-    // finds quadrant of color circle to start from and calculates hue using light trig, provided by css-tricks.com
+    // finds quadrant of color circle to start from and calculates hue using trig provided by css-tricks.com
     if (delta == 0){
         h = 0;
     }
@@ -86,8 +86,8 @@ function rgbToHSL(rgbObj){
     //  returns object with hue, saturation, and lightness
     return {
         hue: h,
-        saturation: s * 100, // this will be a percentage
-        lightness: l * 100  // this will be a percentage
+        saturation: (s * 100).toFixed(1), // this will be a percentage
+        lightness: (l * 100).toFixed(1)  // this will be a percentage
     };
 
 }
@@ -138,30 +138,77 @@ function generateColorPalette(hslObject){
         },
         light: {
             hue: h,
-            saturation: s,
-            lightness: (l + 20) <= 100 ? l + 20 : 100 
+            saturation: (s - 20) <= 100 ? s - 20 : 100,
+            lightness: l 
         },
         dark: {
             hue: h,
             saturation: s,
-            lightness: (l - 20) >= 0 ? l - 20 : 0
+            lightness: (l - 20) <= 100 ? l - 20 : 0
         }
     }
     return colorPalette;
 }
 
+function HSLToHex(hslObject){
+    let h = hslObject.hue;
+    let s = hslObject.saturation;
+    let l = hslObject.lightness;
+
+    //  This next bit of code is some magic trig from css-tricks.com
+
+    // s and l need to be between 0 and 1
+    s /= 100;
+    l /= 100;
+
+    // c is chroma, or color intensity.  x is the second largest component. m the amount to add to each to match lightness.
+    let c = (1 - Math.abs(2 * l - 1)) * s;
+    let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    let m = l - c/2;
+    // initialize r,g,b
+    let r = 0;
+    let g = 0;
+    let b = 0;
+
+    // ********TODO: Turn this into a switch statement******** // 
+    if (h >= 0 && h < 60) {
+        r = c; g = x; b = 0;  
+      } 
+      else if (h >= 60 && h < 120) {
+        r = x; g = c; b = 0;
+      } 
+      else if (h >= 120 && h < 180) {
+        r = 0; g = c; b = x;
+      } 
+      else if (h >= 180 && h < 240) {
+        r = 0; g = x; b = c;
+      } 
+      else if (h >= 240 && h < 300) {
+        r = x; g = 0; b = c;
+      } 
+      else if (h >= 300 && h < 360) {
+        r = c; g = 0; b = x;
+      }
+      r = Math.round((r + m) * 255);
+      g = Math.round((g + m) * 255);
+      b = Math.round((b + m) * 255);
+
+      return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+
+}
 
 
 // **********************TESTING************************** //
 
 //  sets primary color
-setPrimary('#880');
+setPrimary('#5656FF');
 
 //  calls the function, assigns HSL object to hsl,  changes the body background color to the primary css variable. 
-let hsl = rgbToHSL(hexToRGB(primary));
+let hsl = RGBToHSL(hexToRGB(primary));
 body.style.setProperty('background-color', `hsl(${hsl.hue}, ${hsl.saturation}%, ${hsl.lightness}%)`);
+console.log(HSLToHex(hsl));
 
-// *********************TODOS***************************** //
+// ***********************TODOS*************************** //
 
 // create function that converts hsl to hex code string
 
