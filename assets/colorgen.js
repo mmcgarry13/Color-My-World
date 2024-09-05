@@ -10,8 +10,6 @@ let triad2 = getComputedStyle(root).getPropertyValue('--triad2');
 let light = getComputedStyle(root).getPropertyValue('--light');
 let dark = getComputedStyle(root).getPropertyValue('--dark');
 
-
-
 // converts hex color values 00-FF into r, g, b values 0-255. 
 function hexToRGB(hex) {
     // split string into array
@@ -189,6 +187,7 @@ function HSLToHex(hslObject) {
     let b = 0;
 
     //  basically find the 60 degree section of the color wheel hue is pointing to, then assign r,g,b accordingly
+
     if (h >= 0 && h < 60) {
         r = c;
         g = x;
@@ -224,13 +223,13 @@ function HSLToHex(hslObject) {
     b = (Math.round((b + m) * 255)).toString(16);
 
     if (r.length == 1) {
-        r += r;
+        r = `0${r}`;
     }
     if (g.length == 1) {
-        g += g;
+        g = `0${g}`;
     }
     if (b.length == 1) {
-        b += b;
+        b = `0${b}`;
     }
 
     return `#${r}${g}${b}`;
