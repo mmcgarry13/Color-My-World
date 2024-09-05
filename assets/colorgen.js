@@ -275,10 +275,13 @@ Original Colors:
     light: ${light}
     dark: ${dark}`);
 
-//  sets primary color
+//  sets new primary color
 setPrimary('#595085');
 
-//  calls the function, assigns HSL object to hsl,  changes the body background color to the primary css variable. 
+//  changes the body background color to the primary css variable. 
+body.style.setProperty('background-color', `${primary}`);
+
+//  calls the function, assigns HSL object to hsl
 let hsl = RGBToHSL(hexToRGB(primary));
 
 //  takes hsl, generates color palette array of hsl objects, sets css variables with Hex color codes.
