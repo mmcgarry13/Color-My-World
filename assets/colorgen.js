@@ -3,7 +3,7 @@ const root = document.querySelector(':root');
 const body = document.querySelector('body');
 let primary = getComputedStyle(root).getPropertyValue('--primary');
 let adjacent1 = getComputedStyle(root).getPropertyValue('--adjacent1');
-let adjacent2 = getComputedStyle(root).getPropertyValue('--adjecent2');
+let adjacent2 = getComputedStyle(root).getPropertyValue('--adjacent2');
 let complimentary = getComputedStyle(root).getPropertyValue('--complimentary');
 let triad1 = getComputedStyle(root).getPropertyValue('--triad1');
 let triad2 = getComputedStyle(root).getPropertyValue('--triad2');
@@ -251,20 +251,32 @@ function setCSSVariables(colorPalette) {
     dark = getComputedStyle(root).getPropertyValue('--dark');
 
     console.log(`
-        primary: ${primary}
-        adjacent1: ${adjacent1}
-        adjacent2: ${adjacent2}
-        complimentary: ${complimentary}
-        triad1: ${triad1}
-        triad2: ${triad2}
-        light: ${light}
-        dark: ${dark}
-        `)
+Generated Colors:
+    primary: ${primary}
+    adjacent1: ${adjacent1}
+    adjacent2: ${adjacent2}
+    complimentary: ${complimentary}
+    triad1: ${triad1}
+    triad2: ${triad2}
+    light: ${light}
+    dark: ${dark}`);
 }
 // **********************TESTING************************** //
 
+// logs original colors
+console.log(`
+Original Colors:
+    primary: ${primary}
+    adjacent1: ${adjacent1}
+    adjacent2: ${adjacent2}
+    complimentary: ${complimentary}
+    triad1: ${triad1}
+    triad2: ${triad2}
+    light: ${light}
+    dark: ${dark}`);
+
 //  sets primary color
-setPrimary('#5950FF');
+setPrimary('#595085');
 
 //  calls the function, assigns HSL object to hsl,  changes the body background color to the primary css variable. 
 let hsl = RGBToHSL(hexToRGB(primary));
