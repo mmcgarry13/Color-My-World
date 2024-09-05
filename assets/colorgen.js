@@ -1,6 +1,6 @@
 //  create variables for the css root selector and body element, reference to primary css variable
 const root = document.querySelector(':root');
-const primary = getComputedStyle(root).getPropertyValue('--primary');
+let primary = getComputedStyle(root).getPropertyValue('--primary');
 const body = document.querySelector('body');
 
 // converts hex color values 00-FF into r, g, b values 0-255. 
@@ -9,7 +9,9 @@ function hexToRGB(hex){
    const colors = hex.split('');
 
    // remove the #
-   colors.shift();
+   if (colors[0] == '#'){
+    colors.shift();
+   }
 
    // initialize r,g,b values
    let r = 0;
@@ -90,13 +92,77 @@ function rgbToHSL(rgbObj){
 
 }
 
+// takes a hex color code as a string ('#000' or '#000000') and changes the css variable and global reference
+function setPrimary(hexColor){
+    root.style.setProperty('--primary', hexColor);
+    primary = hexColor;
+}
+
+// takes the hslObject from rgbToHSL and returns a color palette object
+function generateColorPalette(hslObject){
+    const { h,s,l } = hslObject;
+    const phi = 30; //degrees
+    const colorPalette = {
+        primary: {
+            hue: h,
+            saturation: s,
+            lightness: l
+        },
+        adjacent1: {
+            // if h + phi is less than or equal to 360, hue equals h + phi, 
+            // else subtract 360 to get the correct angle
+            hue: (h + phi) <= 360 ? h + phi : h + phi - 360,
+            saturation: s,
+            lightness: l
+        },
+        adjacent2: {
+            // same deal but other direction
+            hue: (h - phi) >= 0 ? h - phi : h - phi + 360,
+            saturation: s,
+            lightness: l
+        },
+        complimentary: {
+            hue: (h + 180) <= 360 ? h + 180 : h + 180 - 360,
+            saturation: s,
+            lightness: l
+        },
+        triad1: {
+            hue: (h + 180 + phi) <= 360 ? h + 180 + phi : h + 180 + phi - 360,
+            saturation: s,
+            lightness: l
+        },
+        triad2: {
+            hue: (h + 180 - phi) >= 0 ? h + 180 - phi : h + 180 -phi + 360,
+            saturation: s,
+            lightness: l
+        },
+        light: {
+            hue: h,
+            saturation: s,
+            lightness: (l + 20) <= 100 ? l + 20 : 100 
+        },
+        dark: {
+            hue: h,
+            saturation: s,
+            lightness: (l - 20) >= 0 ? l - 20 : 0
+        }
+    }
+    return colorPalette;
+}
+
+
+
 // **********************TESTING************************** //
+
+//  sets primary color
+setPrimary('#880');
+
 //  calls the function, assigns HSL object to hsl,  changes the body background color to the primary css variable. 
 let hsl = rgbToHSL(hexToRGB(primary));
 body.style.setProperty('background-color', `hsl(${hsl.hue}, ${hsl.saturation}%, ${hsl.lightness}%)`);
 
 // *********************TODOS***************************** //
 
-// create function that changes primary variable
+// create function that converts hsl to hex code string
 
-// create function that takes primary hsl and updates all other css variables. 
+// create function that sets all css variables to new hexcodes
