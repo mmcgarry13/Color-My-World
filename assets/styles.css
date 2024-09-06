@@ -7,6 +7,7 @@
     --triad2: #008;
     --light: #F00;
     --dark: #600;
+    --neutral: #555555; 
 
 }
 
@@ -22,11 +23,11 @@ h1, p {
 .form-control {
     background-color: var(--adjacent1);
     color: white;
-    border-color: var(--triad1)
+    border-color: var(--complimentary)
 }
 
 .form-control button {
-    background-color: var(--adjacent2)
+    background-color: var(--primary)
 }
 
 circle {
@@ -39,10 +40,14 @@ path {
 }
 
 .swatches {
-    background-color: rgb(139, 137, 137);
+    background-color: var(--neutral);
+    border-color: var(--complimentary);
+    border: solid 1px var(--complimentary);
     border-radius: 30px;
     max-width: 90%;
+    margin-top: 1em;
     padding-bottom: 1em;
+    visibility: visible;
 }
 
 .hexcode {
