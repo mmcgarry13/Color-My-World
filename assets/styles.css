@@ -10,9 +10,20 @@
 
 }
 
-div {
-    width: 300px;
-    height: 300px;
+.circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    
+}
+
+circle {
+    fill: var(--primary);
+
+}
+
+path {
+    fill: var(--complimentary);
 }
 
 .flex-container {
@@ -52,6 +63,12 @@ div {
     background-color: var(--dark);
 }
 
+@media only screen and (min-width: 768px) {
+    .circle {
+        height: 100px;
+        width: 100px;
+    }
+}
 
 
 
