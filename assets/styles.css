@@ -7,14 +7,27 @@
     --triad2: #008;
     --light: #F00;
     --dark: #600;
+    --neutral: #555555; 
 
 }
 
-.circle {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    
+body {
+    background-color: var(--dark);
+    transition: all 1s;
+}
+
+h1, p {
+    color: white;
+}
+
+.form-control {
+    background-color: var(--adjacent1);
+    color: white;
+    border-color: var(--complimentary)
+}
+
+.form-control button {
+    background-color: var(--primary)
 }
 
 circle {
@@ -24,6 +37,29 @@ circle {
 
 path {
     fill: var(--complimentary);
+}
+
+.swatches {
+    background-color: var(--neutral);
+    border-color: var(--complimentary);
+    border: solid 1px var(--complimentary);
+    border-radius: 30px;
+    max-width: 90%;
+    margin-top: 1em;
+    padding-bottom: 1em;
+    visibility: visible;
+}
+
+.hexcode {
+    position: relative;
+    top: 50px;
+    left: -5px;
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
 
 .flex-container {
