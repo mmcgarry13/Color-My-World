@@ -25,20 +25,21 @@ We are learning agile development methodologies and implementing feature and bug
 
 ## User Story:
 Color My World
-As a web developer, I want to find colors that work well together, so that I can use them to make high quality web designs.
+
+* As a web developer, I want to find colors that work well together, so that I can use them to make high quality web designs.
 
 
 ## Acceptance Criteria:
-GIVEN.. a color theme generator web app
-WHEN.. I visit the webpage I see a random color selector button
-THEN..I press the button to get a random color with corresponding colors displayed
-WHEN..I click on the favorites button
-THEN.. I see a grid of color pallet cards
-WHEN..I select my color pallet
-THEN..I can give it a name
-WHEN..I input my hex code
-THEN..I receive corresponding colors
-WHEN..I visit the webpage I'll see a 2 part circle and polygon logo
-THEN..When I receive my corresponding colors, the logo will transition to those colors.
-WHEN..I submit my color
-THEN..a modal shows my color pallet and asks if I'd like to favorite
+* GIVEN.. a color theme generator web app
+* WHEN.. I visit the webpage I see a random color selector button
+* THEN..I press the button to get a random color with corresponding colors displayed
+* WHEN..I click on the favorites button
+* THEN.. I see a grid of color pallet cards
+* WHEN..I select my color pallet
+* THEN..I can give it a name
+* WHEN..I input my hex code
+* THEN..I receive corresponding colors
+* WHEN..I visit the webpage I'll see a 2 part circle and polygon logo
+* THEN..When I receive my corresponding colors, the logo will transition to those colors.
+* WHEN..I submit my color
+* THEN..a modal shows my color pallet and asks if I'd like to favorite
