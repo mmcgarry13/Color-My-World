@@ -25,6 +25,7 @@ We are learning agile development methodologies and implementing feature and bug
 
 ## User Story:
 Color My World
+
 * As a web developer, I want to find colors that work well together, so that I can use them to make high quality web designs.
 
 
