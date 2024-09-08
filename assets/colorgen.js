@@ -9,6 +9,8 @@ let triad1 = getComputedStyle(root).getPropertyValue('--triad1');
 let triad2 = getComputedStyle(root).getPropertyValue('--triad2');
 let light = getComputedStyle(root).getPropertyValue('--light');
 let dark = getComputedStyle(root).getPropertyValue('--dark');
+const swatchHex = document.querySelectorAll('.hexcode')
+
 
 // converts hex color values 00-FF into r, g, b values 0-255. 
 function hexToRGB(hex) {
@@ -248,6 +250,11 @@ function setCSSVariables(colorPalette) {
     triad2 = getComputedStyle(root).getPropertyValue('--triad2');
     light = getComputedStyle(root).getPropertyValue('--light');
     dark = getComputedStyle(root).getPropertyValue('--dark');
+
+    let colors = [primary, adjacent1, adjacent2, complimentary, triad1, triad2, dark, light];
+    for (let i = 0; i < swatchHex.length; i++) {
+        swatchHex[i].textContent = colors[i];
+    }
 
     console.log(`
 Generated Colors:
