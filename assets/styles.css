@@ -44,8 +44,8 @@ path {
     border-color: var(--complimentary);
     border: solid 1px var(--complimentary);
     border-radius: 30px;
-    max-width: 90%;
-    margin-top: 1em;
+    /* max-width: 90%; */
+    margin: 1em 0;
     padding-bottom: 1em;
     visibility: visible;
 }
@@ -104,7 +104,62 @@ path {
         height: 100px;
         width: 100px;
     }
+    .hexcode {
+        top: 38px;
+        left: 17px;
+    }
+    header {
+        height: 40vh;
+        /* padding-top: 20%; */
+        margin-bottom: 10%;
+    }
+    h1 {
+        font-size: 75px;
+    }
 }
 
+@media only screen and (min-width: 992px) {
+    .circle {
+        height: 100px;
+        width: 100px;
+    }
+    .hexcode {
+        top: 38px;
+        left: 17px;
+    }
+    header {
+        height: 40vh;
+        padding-top: 5%;
+        margin-bottom: 10%;
+    }
+    h1 {
+        font-size: 100px;
+    }
+}
 
+/* @media only screen and (min-width: 2200px) {
+    .circle {
+        height: 100px;
+        width: 100px;
+    }
+    .hexcode {
+        top: 38px;
+        left: 17px;
+    }
+    header {
+        height: 40vh;
+        padding-top: 20%;
+        margin-bottom: 10%;
+    }
+    h1 {
+        font-size: 100px;
+    }
+} */
+
+
+.modal-content, h5, .modal-body {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--complimentary)
+}
 
