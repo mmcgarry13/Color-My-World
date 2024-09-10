@@ -3,12 +3,15 @@ const form = document.querySelector('form');
 const submitBtn = document.querySelector('#submit');
 const randomBtn = document.querySelector('#random');
 const modal = document.querySelector('.modal');
-const favorites = document.querySelector('#favorites');
+const favoritesSection = document.querySelector('#favorites-section');
+const favoritesButton = document.querySelector('#favorites');
+const modalFavorites = document.querySelector('#favorites-modal');
 let currentColors = [];
 
-
+favoritesButton.addEventListener('click', renderFavorites);
 form.addEventListener('submit', submitHex);
-randomBtn.addEventListener('click', generateRandom)
+randomBtn.addEventListener('click', generateRandom);
+
 
 function submitHex(e){
     e.preventDefault();
@@ -52,7 +55,7 @@ function buildFavoritesCard(colors) {
     h5.setAttribute('class', 'card-title text-center');
     const flexContainer = document.createElement('div');
     flexContainer.setAttribute('class', 'd-flex justify-content-center flex-wrap');
-    favorites.appendChild(card);
+    favoritesSection.appendChild(card);
     card.appendChild(cardBody);
     cardBody.appendChild(h5);
     cardBody.appendChild(flexContainer);
@@ -68,33 +71,22 @@ function buildFavoritesCard(colors) {
     }
 }
 
+function readFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
+    if (!favorites) {
+        return []
+    } else {
+    return favorites
+    }
+}
 
-{/* <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">Favorites Card</h5>
-                <div class="d-flex justify-content-center flex-wrap">
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <!-- <div class="d-flex justify-content-center"> -->
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div>
-                    <div class="circle primary m-2">
-                        <p class="hexcode-fav">#000000</p>
-                    </div> */}
+function storeFavorites(colors) {
+    let tempData = readFavorites();
+    tempData.push(colors);
+    JSON.stringify(localStorage.setItem('favorites', tempData));
+}
+
+
+
+
+function renderFavorites() {}
