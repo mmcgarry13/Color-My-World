@@ -9,6 +9,9 @@ const modalFavorites = document.querySelector('#favorites-modal');
 let currentColors = [];
 
 favoritesButton.addEventListener('click', renderFavorites);
+modalFavorites.addEventListener('click', e=> {
+    storeFavorites(currentColors);
+});
 form.addEventListener('submit', submitHex);
 randomBtn.addEventListener('click', generateRandom);
 
@@ -17,13 +20,9 @@ function submitHex(e){
     e.preventDefault();
     setPrimary(hexcodeInput.value);
     const hsl = RGBToHSL(hexToRGB(hexcodeInput.value));
-    console.log(hsl)
     currentColors = setCSSVariables(generateColorPalette(hsl));
-    openModal();
 }
-function openModal(){
-    modal.ariaHidden='false'
-}
+
 
 function generateRandom(){
     let r = Math.floor(Math.random() * 255).toString(16);
@@ -74,9 +73,9 @@ function buildFavoritesCard(colors) {
 function readFavorites() {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (!favorites) {
-        return []
+        return [];
     } else {
-    return favorites
+    return favorites;
     }
 }
 
@@ -84,9 +83,15 @@ function storeFavorites(colors) {
     let tempData = readFavorites();
     tempData.push(colors);
     JSON.stringify(localStorage.setItem('favorites', tempData));
+    renderFavorites();
 }
 
 
 
 
-function renderFavorites() {}
+function renderFavorites() {
+    let data = readFavorites();
+    for (item of data) {
+        buildFavoritesCard(item);
+    }
+}

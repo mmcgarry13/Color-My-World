@@ -256,32 +256,7 @@ function setCSSVariables(colorPalette) {
         swatchHex[i].textContent = colors[i];
     }
     return colors;
-
-//     console.log(`
-// Generated Colors:
-//     primary: ${primary}
-//     adjacent1: ${adjacent1}
-//     adjacent2: ${adjacent2}
-//     complimentary: ${complimentary}
-//     triad1: ${triad1}
-//     triad2: ${triad2}
-//     light: ${light}
-//     dark: ${dark}`);
 }
-// **********************TESTING************************** //
-
-// logs original colors
-console.log(`
-Original Colors:
-    primary: ${primary}
-    adjacent1: ${adjacent1}
-    adjacent2: ${adjacent2}
-    complimentary: ${complimentary}
-    triad1: ${triad1}
-    triad2: ${triad2}
-    light: ${light}
-    dark: ${dark}`);
-
 //  sets new primary color
 // setPrimary('#595085');
 
