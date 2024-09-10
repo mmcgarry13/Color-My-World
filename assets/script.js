@@ -61,7 +61,7 @@ function buildFavoritesCard(colors) {
     for (let i = 0; i < colors.length; i++) {
         const circle = document.createElement('div');
         circle.setAttribute('class', 'circle primary m-2');
-        circle.style.setAttribute('background-color', colors[i]);
+        circle.setAttribute('style', `background-color: ${colors[i]}`);
         const p = document.createElement('p');
         p.setAttribute('class', 'hexcode-fav');
         p.textContent = colors[i];
@@ -82,7 +82,7 @@ function readFavorites() {
 function storeFavorites(colors) {
     let tempData = readFavorites();
     tempData.push(colors);
-    JSON.stringify(localStorage.setItem('favorites', tempData));
+    localStorage.setItem('favorites', JSON.stringify(tempData));
     renderFavorites();
 }
 
