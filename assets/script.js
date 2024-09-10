@@ -38,3 +38,4 @@ function generateRandom(){
 }
 
 console.log(swatchHex)
+
