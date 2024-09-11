@@ -3,19 +3,19 @@
 its what it sounds like
 
 ## Table of Contents
-About The Project
-User Story
-Acceptance Criteria
-Built With
-Getting Started
-Prerequisites
-Installation
-Usage
-Roadmap
-Contributing
-License
-Contact
-Acknowledgments
+* About The Project
+* User Story
+* Acceptance Criteria
+* Built With
+* Getting Started
+* Prerequisites
+* Installation
+* Usage
+* Roadmap
+* Contributing
+* License
+* Contact
+* Acknowledgments
 
 ## About The Project
 ![alt text](image.png)
