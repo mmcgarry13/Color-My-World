@@ -4,12 +4,12 @@ const submitBtn = document.querySelector('#submit');
 const randomBtn = document.querySelector('#random');
 const modal = document.querySelector('.modal');
 const favoritesSection = document.querySelector('#favorites-section');
-const favoritesButton = document.querySelector('#favorites');
+
 const modalFavorites = document.querySelector('#favorites-modal');
 let currentColors = [];
 
-favoritesButton.addEventListener('click', renderFavorites);
-modalFavorites.addEventListener('click', e=> {
+
+modalFavorites.addEventListener('click', e => {
     storeFavorites(currentColors);
 });
 form.addEventListener('submit', submitHex);
@@ -74,13 +74,21 @@ function buildFavoritesCard(colors) {
         flexContainer.appendChild(circle);
     }
 }
+function renderFavorites() {
+    favoritesSection.innerHTML = '';
+    let data = readFavorites();
+    for (item of data) {
+        buildFavoritesCard(item);
+
+    }
+}
 
 function readFavorites() {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (!favorites) {
         return [];
     } else {
-    return favorites;
+        return favorites;
     }
 }
 
@@ -94,9 +102,3 @@ function storeFavorites(colors) {
 
 
 
-function renderFavorites() {
-    let data = readFavorites();
-    for (item of data) {
-        buildFavoritesCard(item);
-    }
-}
