@@ -6,8 +6,8 @@ const modal = document.querySelector('.modal');
 const favoritesSection = document.querySelector('#favorites-section');
 
 const modalFavorites = document.querySelector('#favorites-modal');
+const noFavorites = document.querySelector('#no-favorites');
 let currentColors = [];
-
 
 // to randomize favorite or not favorite labels on modal 
 let notFavoriteButton = document.querySelector('#notFavorites-modal');
@@ -30,10 +30,6 @@ const updateModalFavorites = function () {
         x = 0;
     }
 }
-
-
-
-
 
 modalFavorites.addEventListener('click', e => {
     storeFavorites(currentColors);
@@ -127,6 +123,10 @@ function storeFavorites(colors) {
     renderFavorites();
 }
 
-
-
-
+function renderFavorites() {
+    noFavorites.setAttribute('style', 'display: none');
+    let data = readFavorites();
+    for (item of data) {
+        buildFavoritesCard(item);
+    }
+}
