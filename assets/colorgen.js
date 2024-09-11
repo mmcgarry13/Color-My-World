@@ -226,14 +226,22 @@ function HSLToHex(hslObject) {
 
     if (r.length == 1) {
         r = `0${r}`;
+    } 
+    else if (r <= 0){
+        r = '00';
     }
     if (g.length == 1) {
         g = `0${g}`;
+    } 
+    else if (g < 0) {
+        g = '00';
     }
     if (b.length == 1) {
         b = `0${b}`;
     }
-
+    else if (b < 0) {
+        b = '00';
+    }
     return `#${r}${g}${b}`;
 }
 
