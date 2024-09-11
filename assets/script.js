@@ -9,6 +9,32 @@ const modalFavorites = document.querySelector('#favorites-modal');
 let currentColors = [];
 
 
+// to randomize favorite or not favorite labels on modal 
+let notFavoriteButton = document.querySelector('#notFavorites-modal');
+let nolabels = ["It's A No From Me Dog", "Color Me Unimpressed", "They Can't All Be Winners", "Bye, Felicia", "Enough Color for Today", "Nope, Next!"];
+let x = 0
+
+const updateNotFavoriteButton = function () {
+    notFavoriteButton.innerHTML = nolabels[x]; 
+    x ++ 
+    if (x == nolabels.length) {
+        x = 0;
+    }
+};
+
+let yesLabels = ["That'll Do", "Saving This Masterpiece", "Because Why Not", "YOLO", "Let's Pretend I Love It", "Yes, 💖 that 💩"]
+const updateModalFavorites = function () {
+    modalFavorites.innerHTML = yesLabels[x];
+    x ++
+    if (x == yesLabels.length) {
+        x = 0;
+    }
+}
+
+
+
+
+
 modalFavorites.addEventListener('click', e => {
     storeFavorites(currentColors);
 });
@@ -18,6 +44,8 @@ randomBtn.addEventListener('click', generateRandom);
 
 function submitHex(e) {
     e.preventDefault();
+    updateNotFavoriteButton();
+    updateModalFavorites();
     setPrimary(hexcodeInput.value);
     const hsl = RGBToHSL(hexToRGB(hexcodeInput.value));
 
