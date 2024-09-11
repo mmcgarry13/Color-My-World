@@ -21,7 +21,7 @@ h1, p {
 }
 
 .form-control {
-    background-color: var(--adjacent1);
+    background-color: var(--neutral);
     color: white;
     border-color: var(--complimentary)
     -webkit-box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47); 
