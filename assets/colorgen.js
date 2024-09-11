@@ -226,12 +226,13 @@ function HSLToHex(hslObject) {
 
     if (r.length == 1) {
         r = `0${r}`;
-    } 
-    else if (r <= 0){
+
+    } else if (r <= 0) {
         r = '00';
     }
     if (g.length == 1) {
         g = `0${g}`;
+
     } 
     else if (g < 0) {
         g = '00';
@@ -242,6 +243,7 @@ function HSLToHex(hslObject) {
     else if (b < 0) {
         b = '00';
     }
+
     return `#${r}${g}${b}`;
 }
 
@@ -263,32 +265,8 @@ function setCSSVariables(colorPalette) {
     for (let i = 0; i < swatchHex.length; i++) {
         swatchHex[i].textContent = colors[i];
     }
-
-    console.log(`
-Generated Colors:
-    primary: ${primary}
-    adjacent1: ${adjacent1}
-    adjacent2: ${adjacent2}
-    complimentary: ${complimentary}
-    triad1: ${triad1}
-    triad2: ${triad2}
-    light: ${light}
-    dark: ${dark}`);
+    return colors;
 }
-// **********************TESTING************************** //
-
-// logs original colors
-console.log(`
-Original Colors:
-    primary: ${primary}
-    adjacent1: ${adjacent1}
-    adjacent2: ${adjacent2}
-    complimentary: ${complimentary}
-    triad1: ${triad1}
-    triad2: ${triad2}
-    light: ${light}
-    dark: ${dark}`);
-
 //  sets new primary color
 // setPrimary('#595085');
 

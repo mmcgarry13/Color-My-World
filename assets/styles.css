@@ -7,7 +7,7 @@
     --triad2: #008;
     --light: #F00;
     --dark: #600;
-    --neutral: #555555; 
+    --neutral: #41414142; 
 
 }
 
@@ -142,15 +142,15 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     }
     header {
         height: 40vh;
-        padding-top: 5%;
-        margin-bottom: 10%;
+        /* padding-top: 5%; */
+        /* margin-bottom: 10%; */
     }
     h1 {
         font-size: 100px;
     }
 }
 
-/* @media only screen and (min-width: 2200px) {
+@media only screen and (min-width: 2200px) {
     .circle {
         height: 100px;
         width: 100px;
@@ -160,14 +160,14 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
         left: 17px;
     }
     header {
+        margin: 1em;
         height: 40vh;
-        padding-top: 20%;
-        margin-bottom: 10%;
+        margin-bottom: 5%;
     }
     h1 {
         font-size: 100px;
     }
-} */
+}
 
 
 .modal-content, h5, .modal-body {
@@ -175,3 +175,26 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     color: white;
     border-color: var(--complimentary)
 }
+
+
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: var(--complimentary);
+    margin: 1px;
+
+}
+
+.card {
+    width: 90%;
+    margin: 0 auto;
+    background-color: var(--neutral);
+}
+
+.hexcode-fav {
+    position: relative;
+    top: 50px;
+    left: -5px;
+    font-size: small;
+}
+
