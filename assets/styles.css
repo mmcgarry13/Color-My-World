@@ -21,13 +21,17 @@ h1, p {
 }
 
 .form-control {
-    background-color: var(--adjacent1);
+    background-color: var(--neutral);
     color: white;
     border-color: var(--complimentary)
+    -webkit-box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47); 
+    box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47);
 }
 
 .form-control button {
     background-color: var(--primary)
+    -webkit-box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47); 
+    box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47);
 }
 
 circle {
@@ -56,10 +60,19 @@ path {
     left: -5px;
 }
 
+.colorType {
+    position: relative;
+    top: -65px;
+    left: -20px;
+    font-size: 15px;
+}
+
 .circle {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    -webkit-box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77); 
+box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
 }
 
 .flex-container {
@@ -163,6 +176,7 @@ path {
     border-color: var(--complimentary)
 }
 
+
 .square {
     width: 50px;
     height: 50px;
@@ -183,3 +197,4 @@ path {
     left: -5px;
     font-size: small;
 }
+
