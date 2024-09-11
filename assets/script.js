@@ -4,11 +4,34 @@ const submitBtn = document.querySelector('#submit');
 const randomBtn = document.querySelector('#random');
 const modal = document.querySelector('.modal');
 const favoritesSection = document.querySelector('#favorites-section');
+
 const modalFavorites = document.querySelector('#favorites-modal');
 const noFavorites = document.querySelector('#no-favorites');
 let currentColors = [];
 
-modalFavorites.addEventListener('click', e=> {
+// to randomize favorite or not favorite labels on modal 
+let notFavoriteButton = document.querySelector('#notFavorites-modal');
+let nolabels = ["It's A No From Me Dog", "Color Me Unimpressed", "They Can't All Be Winners", "Bye, Felicia", "Enough Color for Today", "Nope, Next!"];
+let x = 0
+
+const updateNotFavoriteButton = function () {
+    notFavoriteButton.innerHTML = nolabels[x]; 
+    x ++ 
+    if (x == nolabels.length) {
+        x = 0;
+    }
+};
+
+let yesLabels = ["That'll Do", "Saving This Masterpiece", "Because Why Not", "YOLO", "Let's Pretend I Love It", "Yes, 💖 that 💩"]
+const updateModalFavorites = function () {
+    modalFavorites.innerHTML = yesLabels[x];
+    x ++
+    if (x == yesLabels.length) {
+        x = 0;
+    }
+}
+
+modalFavorites.addEventListener('click', e => {
     storeFavorites(currentColors);
 });
 form.addEventListener('submit', submitHex);
@@ -17,6 +40,8 @@ randomBtn.addEventListener('click', generateRandom);
 
 function submitHex(e) {
     e.preventDefault();
+    updateNotFavoriteButton();
+    updateModalFavorites();
     setPrimary(hexcodeInput.value);
     const hsl = RGBToHSL(hexToRGB(hexcodeInput.value));
 
@@ -73,13 +98,21 @@ function buildFavoritesCard(colors) {
         flexContainer.appendChild(circle);
     }
 }
+function renderFavorites() {
+    favoritesSection.innerHTML = '';
+    let data = readFavorites();
+    for (item of data) {
+        buildFavoritesCard(item);
+
+    }
+}
 
 function readFavorites() {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (!favorites) {
         return [];
     } else {
-    return favorites;
+        return favorites;
     }
 }
 
@@ -89,9 +122,6 @@ function storeFavorites(colors) {
     localStorage.setItem('favorites', JSON.stringify(tempData));
     renderFavorites();
 }
-
-
-
 
 function renderFavorites() {
     noFavorites.setAttribute('style', 'display: none');
