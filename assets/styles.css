@@ -34,6 +34,10 @@ h1, p {
     box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47);
 }
 
+.form-control input::placeholder {
+    color: white;
+}
+
 circle {
     fill: var(--primary);
 
