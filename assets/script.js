@@ -4,11 +4,9 @@ const submitBtn = document.querySelector('#submit');
 const randomBtn = document.querySelector('#random');
 const modal = document.querySelector('.modal');
 const favoritesSection = document.querySelector('#favorites-section');
-const favoritesButton = document.querySelector('#favorites');
 const modalFavorites = document.querySelector('#favorites-modal');
 let currentColors = [];
 
-favoritesButton.addEventListener('click', renderFavorites);
 modalFavorites.addEventListener('click', e=> {
     storeFavorites(currentColors);
 });
