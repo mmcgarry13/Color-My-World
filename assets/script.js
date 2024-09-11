@@ -5,6 +5,7 @@ const randomBtn = document.querySelector('#random');
 const modal = document.querySelector('.modal');
 const favoritesSection = document.querySelector('#favorites-section');
 const modalFavorites = document.querySelector('#favorites-modal');
+const noFavorites = document.querySelector('#no-favorites');
 let currentColors = [];
 
 modalFavorites.addEventListener('click', e=> {
@@ -93,6 +94,7 @@ function storeFavorites(colors) {
 
 
 function renderFavorites() {
+    noFavorites.setAttribute('style', 'display: none');
     let data = readFavorites();
     for (item of data) {
         buildFavoritesCard(item);
