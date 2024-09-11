@@ -191,7 +191,8 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
 
 .card {
     width: 90%;
-    margin: 0 auto;
+    margin: 100;
+    /* margin: 0 auto; */
     background-color: var(--neutral);
 }
 
