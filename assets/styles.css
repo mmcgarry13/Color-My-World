@@ -245,3 +245,9 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
 
 
 
+#no-favorites {
+    display: flex;
+    justify-content: center;
+    font-size: 40;
+    margin-top: 20px;
+}
