@@ -13,12 +13,13 @@ let currentColors = [];
 let notFavoriteButton = document.querySelector('#notFavorites-modal');
 let nolabels = ["It's A No From Me Dog", "Color Me Unimpressed", "They Can't All Be Winners", "Bye, Felicia", "Enough Color for Today", "Nope, Next!"];
 let x = 0
+let n = 0
 
 const updateNotFavoriteButton = function () {
-    notFavoriteButton.innerHTML = nolabels[x]; 
-    x ++ 
-    if (x == nolabels.length) {
-        x = 0;
+    notFavoriteButton.innerHTML = nolabels[n]; 
+    n ++ 
+    if (n == nolabels.length) {
+        n = 0;
     }
 };
 

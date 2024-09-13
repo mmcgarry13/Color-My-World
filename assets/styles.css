@@ -62,6 +62,7 @@ path {
     position: relative;
     top: 50px;
     left: -5px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .colorType {
@@ -71,12 +72,25 @@ path {
     font-size: 15px;
 }
 
+#favorites-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* min-width: 100vw; */
+
+}
+
 .circle {
     height: 50px;
     width: 50px;
     border-radius: 50%;
     -webkit-box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77); 
 box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
+}
+
+.card-body {
+    padding: 0 2em;
+    padding-bottom: 2em;
 }
 
 .flex-container {
@@ -116,13 +130,48 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     background-color: var(--dark);
 }
 
+.modal-content, h5, .modal-body {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--complimentary)
+}
+
+
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: var(--complimentary);
+    margin: 1px;
+
+}
+
+
+
+.hexcode-fav {
+    position: relative;
+    top: 19px;
+    left: 3px;
+    font-size: x-small;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.card {
+    width: 387px;
+    margin: 1em auto;
+    padding-top: 1em;
+    background-color: var(--neutral);
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
 @media only screen and (min-width: 768px) {
     .circle {
         height: 100px;
         width: 100px;
     }
     .hexcode {
-        top: 38px;
+        top: 35px;
         left: 17px;
     }
     header {
@@ -132,6 +181,15 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     }
     h1 {
         font-size: 75px;
+    }
+    .card {
+        width: 600px;
+        min-height: 300px;
+    }
+    .hexcode-fav {
+        font-size: large;
+        top: 38px;
+        left: 9px;
     }
 }
 
@@ -152,6 +210,14 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     h1 {
         font-size: 100px;
     }
+ 
+    .hexcode-fav {
+        font-size: large;
+    }
+
+    .card {
+        flex-basis: 600px;
+    }
 }
 
 @media only screen and (min-width: 2200px) {
@@ -171,37 +237,13 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     h1 {
         font-size: 100px;
     }
+    .hexcode-fav {
+        font-size: large;
+    }
+   
 }
 
 
-.modal-content, h5, .modal-body {
-    background-color: var(--primary);
-    color: white;
-    border-color: var(--complimentary)
-}
-
-
-.square {
-    width: 50px;
-    height: 50px;
-    background-color: var(--complimentary);
-    margin: 1px;
-
-}
-
-.card {
-    width: 90%;
-    margin: 100;
-    /* margin: 0 auto; */
-    background-color: var(--neutral);
-}
-
-.hexcode-fav {
-    position: relative;
-    top: 50px;
-    left: -5px;
-    font-size: small;
-}
 
 #no-favorites {
     display: flex;
