@@ -75,7 +75,8 @@ path {
 #favorites-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
+    /* min-width: 100vw; */
 
 }
 
@@ -160,6 +161,8 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     margin: 1em auto;
     padding-top: 1em;
     background-color: var(--neutral);
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -181,6 +184,7 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     }
     .card {
         width: 600px;
+        min-height: 300px;
     }
     .hexcode-fav {
         font-size: large;
@@ -206,11 +210,13 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
     h1 {
         font-size: 100px;
     }
-    /* .card {
-        width: 743px;
-    } */
+ 
     .hexcode-fav {
         font-size: large;
+    }
+
+    .card {
+        flex-basis: 600px;
     }
 }
 
@@ -235,9 +241,6 @@ box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
         font-size: large;
     }
    
-   .card {
-    flex: 1 1 300px;
-   }
 }
 
 
