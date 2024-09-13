@@ -16,8 +16,8 @@ let x = 0
 let n = 0
 
 const updateNotFavoriteButton = function () {
-    notFavoriteButton.innerHTML = nolabels[n]; 
-    n ++ 
+    notFavoriteButton.innerHTML = nolabels[n];
+    n++
     if (n == nolabels.length) {
         n = 0;
     }
@@ -26,7 +26,7 @@ const updateNotFavoriteButton = function () {
 let yesLabels = ["That'll Do", "Saving This Masterpiece", "Because Why Not", "YOLO", "Let's Pretend I Love It", "Yes, 💖 that 💩"]
 const updateModalFavorites = function () {
     modalFavorites.innerHTML = yesLabels[x];
-    x ++
+    x++
     if (x == yesLabels.length) {
         x = 0;
     }
@@ -49,8 +49,7 @@ function submitHex(e) {
     currentColors = setCSSVariables(generateColorPalette(hsl));
 
 }
-// function openModal()
-// modal.ariaHidden = 'false'
+
 
 
 function generateRandom() {
@@ -70,9 +69,6 @@ function generateRandom() {
 
     hexcodeInput.value = `#${r}${g}${b}`
 }
-
-console.log(swatchHex)
-
 
 
 function buildFavoritesCard(colors) {
@@ -99,14 +95,6 @@ function buildFavoritesCard(colors) {
         flexContainer.appendChild(circle);
     }
 }
-function renderFavorites() {
-    favoritesSection.innerHTML = '';
-    let data = readFavorites();
-    for (item of data) {
-        buildFavoritesCard(item);
-
-    }
-}
 
 function readFavorites() {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
@@ -117,6 +105,21 @@ function readFavorites() {
     }
 }
 
+function renderFavorites() {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
+    if (!storedFavorites) {
+        console.log('No Favorite');
+    }
+    else {
+        noFavorites.setAttribute('style', 'display: none');
+        favoritesSection.innerHTML = '';
+        let data = readFavorites();
+        for (item of data) {
+            buildFavoritesCard(item);
+        }
+    }
+}
+
 function storeFavorites(colors) {
     let tempData = readFavorites();
     tempData.push(colors);
@@ -124,10 +127,4 @@ function storeFavorites(colors) {
     renderFavorites();
 }
 
-function renderFavorites() {
-    noFavorites.setAttribute('style', 'display: none');
-    let data = readFavorites();
-    for (item of data) {
-        buildFavoritesCard(item);
-    }
-}
+renderFavorites();
