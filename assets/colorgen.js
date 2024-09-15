@@ -85,18 +85,13 @@ function RGBToHSL(rgbObj) {
     l = (max + min) / 2;
 
     //calculate saturation using some magic math provided my css-tricks.com
-    if (delta == 0) {
-        s = 0;
-    }
-    else {
-        s = delta / (1 - Math.abs(2 * l - 1));
-    }
+    s = delta == 0 ? 0: delta / (1 - Math.abs(2 * l - 1));
 
     //  returns object with hue, saturation, and lightness
     return {
         hue: h,
-        saturation: (s * 100).toFixed(1), // this will be a percentage
-        lightness: (l * 100).toFixed(1)  // this will be a percentage
+        saturation: +(s * 100).toFixed(1), // this will be a percentage
+        lightness: +(l * 100).toFixed(1)  // this will be a percentage
     };
 
 }
@@ -156,16 +151,17 @@ function generateColorPalette(hslObject) {
         {
             name: 'light',
             hue: h,
-            saturation: (s - 20) <= 100 ? (s - 20).toFixed(1) : 100,
-            lightness: l
+            saturation: s,
+            lightness: (l + 15) <= 100 ? (l + 15).toFixed(1) : 100
         },
         {
             name: 'dark',
             hue: h,
             saturation: s,
-            lightness: (l - 20) <= 100 ? (l - 20).toFixed(1) : 0
+            lightness: (l - 15) >= 0 ? (l - 15).toFixed(1) : 0
         }
     ]
+    
     return colorPalette;
 }
 
@@ -261,7 +257,7 @@ function setCSSVariables(colorPalette) {
     light = getComputedStyle(root).getPropertyValue('--light');
     dark = getComputedStyle(root).getPropertyValue('--dark');
 
-    let colors = [primary, adjacent1, adjacent2, complimentary, triad1, triad2, dark, light];
+    let colors = [primary, adjacent1, adjacent2, complimentary, triad1, triad2, light, dark];
     for (let i = 0; i < swatchHex.length; i++) {
         swatchHex[i].textContent = colors[i];
     }
