@@ -152,15 +152,16 @@ function generateColorPalette(hslObject) {
             name: 'light',
             hue: h,
             saturation: s,
-            lightness: (l + 20) >= 100 ? (l + 20).toFixed(1) : 0 
+            lightness: (l + 15) <= 100 ? (l + 15).toFixed(1) : 100
         },
         {
             name: 'dark',
             hue: h,
             saturation: s,
-            lightness: (l - 20) >= 0 ? (l - 20).toFixed(1) : 0
+            lightness: (l - 15) >= 0 ? (l - 15).toFixed(1) : 0
         }
     ]
+    
     return colorPalette;
 }
 
@@ -256,7 +257,7 @@ function setCSSVariables(colorPalette) {
     light = getComputedStyle(root).getPropertyValue('--light');
     dark = getComputedStyle(root).getPropertyValue('--dark');
 
-    let colors = [primary, adjacent1, adjacent2, complimentary, triad1, triad2, dark, light];
+    let colors = [primary, adjacent1, adjacent2, complimentary, triad1, triad2, light, dark];
     for (let i = 0; i < swatchHex.length; i++) {
         swatchHex[i].textContent = colors[i];
     }
