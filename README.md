@@ -1,7 +1,9 @@
+<!-- title -->
 #  Color My World
 
 it's what it sounds like
 
+<!-- table of contents -->
 # Table of Contents
 
 * [About The Project](#about-the-project)
@@ -18,6 +20,7 @@ it's what it sounds like
 * [Contact](#contact)
 * [Acknowledgments](#acknowledgments)
 
+<!-- brief description of our project including image -->
 ## About The Project
 
 ![here is our original mobile wireframe](image.png)
