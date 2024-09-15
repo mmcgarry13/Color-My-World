@@ -85,12 +85,7 @@ function RGBToHSL(rgbObj) {
     l = (max + min) / 2;
 
     //calculate saturation using some magic math provided my css-tricks.com
-    if (delta == 0) {
-        s = 0;
-    }
-    else {
-        s = delta == 0 ? 0: delta / (1 - Math.abs(2 * l - 1));
-    }
+    s = delta == 0 ? 0: delta / (1 - Math.abs(2 * l - 1));
 
     //  returns object with hue, saturation, and lightness
     return {
@@ -156,14 +151,14 @@ function generateColorPalette(hslObject) {
         {
             name: 'light',
             hue: h,
-            saturation: (s - 20) <= 100 ? (s - 20).toFixed(1) : 100,
-            lightness: l
+            saturation: s,
+            lightness: (l + 20) >= 100 ? (l + 20).toFixed(1) : 0 
         },
         {
             name: 'dark',
             hue: h,
             saturation: s,
-            lightness: (l - 20) <= 100 ? (l - 20).toFixed(1) : 0
+            lightness: (l - 20) >= 0 ? (l - 20).toFixed(1) : 0
         }
     ]
     return colorPalette;
