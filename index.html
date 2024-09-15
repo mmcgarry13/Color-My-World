@@ -12,6 +12,8 @@
 </head>
 
 <body>
+   <!-- modal  -->
+
     <div class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -19,6 +21,8 @@
                     <h5 class="modal-title">Colors</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
+                <!-- display generated color pallet showing labeled circles of color. -->
                 <div class="modal-body">
                     <div class="container-fluid swatches">
                         <div class="row mx-auto my-2">
@@ -72,6 +76,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- modal buttons change each time modal is opened. -->
                     <div class="modal-footer">
                         <button type="button" class="form-control" data-bs-dismiss="modal" id="notFavorites-modal">They Can't All Be Winners</button>
                         <button type="button" class="form-control" data-bs-dismiss="modal" id="favorites-modal">Favorite These Colors</button>
@@ -80,7 +86,11 @@
             </div>
         </div>
     </div>
+
+    <!-- header element containing logo and main title -->
     <header>
+
+        <!-- svg logo present in center screen and favicon. This logo will change colors upon submit -->
         <div class="flex-container my-5">
             <svg height="200" width="200">
                 <circle r="100" cx="100" cy="100"> </circle>
@@ -95,13 +105,17 @@
                 </g>
             </svg>
         </div>
+
+        <!-- main center of page title -->
         <div class="container">
-            <h1 class="text-center mx-auto">Color my World!</h1>
+            <h1 class="text-center mx-auto">Color My World!</h1>
         </div>
     </header>
+
+    <!-- hexcode form, enter your own code or generate random code -->
     <div class="container">
         <form class="form-control">
-            <label class="form-label" for="hexcode">Enter a hexcode</label>
+            <label class="form-label" for="hexcode">Enter A Hexcode</label>
             <input class="form-control" id="hexcode" placeholder="#000000"></input>
             <button type="submit" class="form-control my-1" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Submit</button>
@@ -109,6 +123,7 @@
         </form>
     </div>
 
+    <!-- message present when there are no favorites, is hidden when favorites are read from localStorage. -->
     <div class="container" id="favorites-section">
         <p id="no-favorites">No Favorites Yet 😭</p>
     </div>
