@@ -54,6 +54,11 @@ path {
     fill: var(--complimentary);
 }
 
+/* svg logo color change on hover */
+path:hover {
+    fill: var(--adjacent1)
+}
+
 /* adjusting background for visibility of displayed swatches, also sets size within modal */
 .swatches {
     background-color: var(--neutral);
