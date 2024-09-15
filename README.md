@@ -111,6 +111,11 @@ Challenges conquered include manifesting the modal, creating the svg logo, error
 
 Successes include deploying our project through github-pages and the program successfully displaying coordinating colors with based on the selected hexcode. 
 
+Future Ideas
+* hover over svg logo
+* directions to clear favorites / a button to clear favorites
+
+
 ## Contributing
 
 Joshua Hensley [(image-2.png)]
