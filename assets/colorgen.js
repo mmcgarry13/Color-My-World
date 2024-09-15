@@ -89,14 +89,14 @@ function RGBToHSL(rgbObj) {
         s = 0;
     }
     else {
-        s = delta / (1 - Math.abs(2 * l - 1));
+        s = delta == 0 ? 0: delta / (1 - Math.abs(2 * l - 1));
     }
 
     //  returns object with hue, saturation, and lightness
     return {
         hue: h,
-        saturation: (s * 100).toFixed(1), // this will be a percentage
-        lightness: (l * 100).toFixed(1)  // this will be a percentage
+        saturation: +(s * 100).toFixed(1), // this will be a percentage
+        lightness: +(l * 100).toFixed(1)  // this will be a percentage
     };
 
 }
