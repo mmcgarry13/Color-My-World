@@ -1,36 +1,38 @@
+//query selectors
+
 const hexcodeInput = document.querySelector('#hexcode');
 const form = document.querySelector('form');
 const submitBtn = document.querySelector('#submit');
 const randomBtn = document.querySelector('#random');
 const modal = document.querySelector('.modal');
 const favoritesSection = document.querySelector('#favorites-section');
-
 const modalFavorites = document.querySelector('#favorites-modal');
 const noFavorites = document.querySelector('#no-favorites');
+const notFavoriteButton = document.querySelector('#notFavorites-modal');
+
 let currentColors = [];
 
 // to randomize favorite or not favorite labels on modal 
-let notFavoriteButton = document.querySelector('#notFavorites-modal');
-let nolabels = ["It's A No From Me Dog", "Color Me Unimpressed", "They Can't All Be Winners", "Bye, Felicia", "Enough Color for Today", "Nope, Next!"];
-let x = 0
-let n = 0
+const nolabels = [
+    "It's A No From Me Dog", 
+    "Color Me Unimpressed", 
+    "They Can't All Be Winners", 
+    "Bye, Felicia", 
+    "Enough Color for Today", 
+    "Nope, Next!"
+];
+const yesLabels = [
+    "That'll Do", 
+    "Saving This Masterpiece", 
+    "Because Why Not", 
+    "YOLO", 
+    "Let's Pretend I Love It", 
+    "Yes, 💖 that 💩"
+];
+let x = 0;
+let n = 0;
 
-const updateNotFavoriteButton = function () {
-    notFavoriteButton.innerHTML = nolabels[n];
-    n++
-    if (n == nolabels.length) {
-        n = 0;
-    }
-};
-
-let yesLabels = ["That'll Do", "Saving This Masterpiece", "Because Why Not", "YOLO", "Let's Pretend I Love It", "Yes, 💖 that 💩"]
-const updateModalFavorites = function () {
-    modalFavorites.innerHTML = yesLabels[x];
-    x++
-    if (x == yesLabels.length) {
-        x = 0;
-    }
-}
+// Event Listeners
 
 modalFavorites.addEventListener('click', e => {
     storeFavorites(currentColors);
@@ -38,22 +40,22 @@ modalFavorites.addEventListener('click', e => {
 form.addEventListener('submit', submitHex);
 randomBtn.addEventListener('click', generateRandom);
 
+// Listener Functions
 
+//  Submits Form Info
 function submitHex(e) {
     e.preventDefault();
     updateNotFavoriteButton();
     updateModalFavorites();
     setPrimary(hexcodeInput.value);
     const hsl = RGBToHSL(hexToRGB(hexcodeInput.value));
-
     currentColors = setCSSVariables(generateColorPalette(hsl));
-
 }
 
+// Random and flavor text Functions
 
-
+// Generates a random hexcode and updates form
 function generateRandom() {
-
     let r = Math.floor(Math.random() * 255).toString(16);
     let g = Math.floor(Math.random() * 255).toString(16);
     let b = Math.floor(Math.random() * 255).toString(16);
@@ -66,11 +68,28 @@ function generateRandom() {
     if (b.length == 1) {
         b = `0${b}`;
     }
-
     hexcodeInput.value = `#${r}${g}${b}`
 }
 
+// Updates text of Modal Buttons
+const updateNotFavoriteButton = function () {
+    notFavoriteButton.innerHTML = nolabels[n];
+    n++;
+    if (n == nolabels.length) {
+        n = 0;
+    }
+}
+const updateModalFavorites = function () {
+    modalFavorites.innerHTML = yesLabels[x];
+    x++;
+    if (x == yesLabels.length) {
+        x = 0;
+    }
+}
 
+// Page Builders
+
+// Builds a favorites card and adds it to the DOM
 function buildFavoritesCard(colors) {
     const card = document.createElement('div');
     card.setAttribute('class', 'card')
@@ -96,19 +115,10 @@ function buildFavoritesCard(colors) {
     }
 }
 
-function readFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('favorites'));
-    if (!favorites) {
-        return [];
-    } else {
-        return favorites;
-    }
-}
-
+// Renders favorites section if it exists in local storage
 function renderFavorites() {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
     if (!storedFavorites) {
-        console.log('No Favorite');
     }
     else {
         noFavorites.setAttribute('style', 'display: none');
@@ -120,11 +130,26 @@ function renderFavorites() {
     }
 }
 
+// Local Storage Functions
+
+// Reads local storage and returns data
+function readFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
+    if (!favorites) {
+        return [];
+    } else {
+        return favorites;
+    }
+}
+
+// Appends current color data to local storage
 function storeFavorites(colors) {
     let tempData = readFavorites();
     tempData.push(colors);
     localStorage.setItem('favorites', JSON.stringify(tempData));
     renderFavorites();
 }
+
+// Page load function calls
 
 renderFavorites();
