@@ -189,7 +189,6 @@ function HSLToHex(hslObject) {
     let b = 0;
 
     //  basically find the 60 degree section of the color wheel hue is pointing to, then assign r,g,b accordingly
-
     if (h >= 0 && h < 60) {
         r = c;
         g = x;
@@ -247,7 +246,8 @@ function HSLToHex(hslObject) {
     return `#${r}${g}${b}`;
 }
 
-// takes an array of hsl color objects and changes the css variables accordingly, resets the global reference variables
+// takes an array of hsl color objects and changes the css variables accordingly, resets the global reference variables, returns an array of colors...
+// a bit of a multi purpose function, could be refactored into two, but it's working so we might as well leave it
 function setCSSVariables(colorPalette) {
     colorPalette.forEach(color => {
         root.style.setProperty(`--${color.name}`, `${HSLToHex(color)}`);
@@ -267,14 +267,3 @@ function setCSSVariables(colorPalette) {
     }
     return colors;
 }
-//  sets new primary color
-// setPrimary('#595085');
-
-//  calls the function, assigns HSL object to hsl
-// let hsl = RGBToHSL(hexToRGB(primary));
-
-//  takes hsl, generates color palette array of hsl objects, sets css variables with Hex color codes.
-// setCSSVariables(generateColorPalette(hsl));
-
-//  changes the body background color to the primary css variable. 
-// body.style.setProperty('background-color', `${dark}`);
