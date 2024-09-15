@@ -1,3 +1,4 @@
+/* root colors */
 :root {
     --primary: #800;
     --adjacent1: #820;
@@ -11,14 +12,17 @@
 
 }
 
+/* main page background, updates upon submit */
 body {
     background-color: var(--dark);
     transition: all 1s;
 }
 
+/* h1, p controls the color of the main page title and the hexcode labels */
 h1, p {
     color: white;
 }
+
 
 circle {
     fill: var(--primary);
@@ -27,6 +31,8 @@ circle {
 path {
     fill: var(--complimentary);
 }
+
+/* adjust background of form for visibility of displayed color swatches */
 
 .form-control {
     background-color: var(--neutral);
@@ -40,9 +46,24 @@ path {
     box-shadow: inset 10px 10px 30px 0px rgba(0,0,0,0.47);
 }
 
+/* color of hexcode format placeholder for visibilty */
 .form-control input::placeholder {
     color: white;
 }
+
+
+/* logo background circle color, updates upon submit */
+circle {
+    fill: var(--primary);
+
+}
+
+/* center polygon shape in logo, updates upon submit */
+path {
+    fill: var(--complimentary);
+}
+
+/* adjusting background for visibility of displayed swatches, also sets size within modal */
 
 .swatches {
     background-color: var(--neutral);
@@ -54,6 +75,7 @@ path {
     visibility: visible;
 }
 
+/* positions hexcode numbers on circles and changes font. */
 .hexcode {
     position: relative;
     top: 50px;
@@ -61,6 +83,7 @@ path {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/* labels what type of color is being displayed primary, adj1, adj2, complimentary, tri1, tri2, light, dark. */
 .colorType {
     position: relative;
     top: -65px;
@@ -68,12 +91,21 @@ path {
     font-size: 15px;
 }
 
+/* displayed favorites on main page */
+#favorites-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* adding styling to swatches to increase visibility */
 .circle {
     height: 50px;
     width: 50px;
     border-radius: 50%;
     box-shadow: 6px 7px 14px 0px rgba(0,0,0,0.77);
 }
+
 
 .card-body {
     padding: 0 2em;
@@ -85,6 +117,7 @@ path {
     justify-content: space-around;
 }
 
+/* setting each swatch circle color */
 .primary {
     background-color: var(--primary);
 }
@@ -160,6 +193,7 @@ path {
     margin-top: 20px;
 }
 
+/* creating responsiveness from a mobile-first perspective. starting at 768px */
 @media only screen and (min-width: 768px) {
     .circle {
         height: 100px;
@@ -192,6 +226,7 @@ path {
     }
 }
 
+/* creating responsiveness from a mobile-first perspective. starting at 992px */
 @media only screen and (min-width: 992px) {
     .circle {
         height: 100px;
@@ -220,6 +255,7 @@ path {
     }
 }
 
+/* creating responsiveness from a mobile-first perspective. starting at 2200px */
 @media only screen and (min-width: 2200px) {
     .circle {
         height: 100px;
@@ -244,4 +280,12 @@ path {
     .hexcode-fav {
         font-size: large;
     }
+}
+
+/* displayed text when no favorites are in localStorage */
+#no-favorites {
+    display: flex;
+    justify-content: center;
+    font-size: 40;
+    margin-top: 20px;
 }
